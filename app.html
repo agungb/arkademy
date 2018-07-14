@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Jawaban test Arkademy">
+    <meta name="author" content="Agung Budidoyo">
+    <title>Seleksi Arkademy #3</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Jawaban Test Bootcamp Arkademy</h1>
+
+    
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript">
+    // Jawaban No 1
+    // Function return value JSON
+    function member (name, address, hobbies, is_married, school, skill) {
+      let json = {
+        "nama": name,
+        "alamat": address,
+        "hobi": hobbies,
+        "status": is_married,
+        "sekolah": school,
+        "kemampuan": skill
+      };
+      return json;
+    };
+    var peserta = member("Agung", "Klaten", ["travelling", "camping", "hiking"], false, { "university" : "ITTelkom" }, ["html", "css", "JavaScript"]);
+    console.log(peserta);
+
+    // Jawaban No 2 Membuat function validasi
+    // Function validasi username harus huruf kecil
+    function harusHurufKecil(username) {
+      if(username.toLowerCase() === username) {
+        return "username valid";
+      } else {
+        return "username harus huruf kecil" ;
+      }
+    }
+    console.log(harusHurufKecil("tes"));
+
+    // Function validasi email dengan pola huruf kecil dan karakter @
+    function cekEmail(email) {
+      let pola = /^[a-z]*@+$/;
+      if (pola.test(email)) {
+        return "format email valid";
+      } else {
+        return "format email tidak valid";
+      }
+    }
+    console.log(cekEmail("agungbudidoyocom@"));
+
+    // Function validasi no telpon pola +0000 000000000
+    function cekNoTelpon(telp) {
+      let pola = /^\+?([0-9]{4})\)?[ ]?([0-9]{9})$/;
+      if (pola.test(telp)) {
+        return "format telp valid";
+      } else {
+        return "format telp tidak valid";
+      }
+    }
+    console.log(cekNoTelpon("+6281 329526786"));
+
+    // Jawaban No 3 Membuat function genarate 300 serial number
+    // Function generate angka acak
+    function generateAngkaAcak(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    console.log(generateAngkaAcak(2, 9));
+
+    // Function generate karakter acak
+    function generateKarakterAcak() {
+      let chars = "1234567890abcdefghijklmnopqrstuvwxyz";
+      let angkaAcak = generateAngkaAcak(0, chars.length - 1);
+      return chars[angkaAcak];
+    }
+    console.log(generateKarakterAcak());
+
+    // Function genarate serial number berdasarkan pola
+    function generateSerialNumber(pola) {
+      let serialNumber = "";
+
+      if (pola !== null) {
+        for (let i = 0; i < pola.length; i++) {
+          let polaKarakter = pola[i];
+
+          serialNumber += polaKarakter == "0" ? generateKarakterAcak() : polaKarakter;
+
+        }
+      }
+      return serialNumber;
+    }
+
+    // Generate serial number berdasarkan pola
+    console.log(generateSerialNumber("00000-00000-00000-00000-00000"));
+
+    // Function unyk merepeat generateSerialNumber
+    function repeatSerialNumber(pola, sejumlah) {
+      let listSerialNumber = generateSerialNumber(pola);
+
+      for (let i = 0; i < sejumlah; i++) {
+        listSerialNumber += "\n";
+        listSerialNumber += generateSerialNumber(pola);
+      }
+      return listSerialNumber
+    }
+
+    // Generate 300 Serial Numbernya Mbak Via Valen :D
+    console.log(repeatSerialNumber("00000-00000-00000-00000-00000", 300));
+    </script>
+  </body>
+</html>
